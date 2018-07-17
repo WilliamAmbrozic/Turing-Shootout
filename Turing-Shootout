@@ -1,0 +1,1296 @@
+setscreen ("graphics:vga")
+loop
+    %Set Variables
+    var shotdelay, P, CPUP, dive, intimidation, chest, call, po, oi, s, d, l, x, t, r, p, n, ab, bc, dive2, height1, height2, savecount, goalcount, CPUgoalcount, a, o, u,
+	b, m, ca, co, cb, cm, cu
+	: int
+    var g, goal : real
+    var continue, continue1, continue3, continue4, continue6, continue5, answer : string
+    x := -300
+    savecount := 450
+    goalcount := 450
+    CPUgoalcount := 450
+    r := 450
+    n := 0
+    o := 0
+    u := 0
+    b := 0
+    m := 0
+    a := 0
+    p := 0
+    l := 0
+    co := 0
+    cu := 0
+    cb := 0
+    cm := 0
+    ca := 0
+    colourback (9)
+    cls
+    %Opening Screen transition
+    loop
+	drawfilloval (x, 25, 25, 25, 76)
+	delay (2)
+	drawfilloval (x, 75, 25, 25, 76)
+	drawfilloval (x, 125, 25, 25, 76)
+	drawfilloval (x, 175, 25, 25, 76)
+	drawfilloval (x, 225, 25, 25, 76)
+	drawfilloval (x, 275, 25, 25, 76)
+	drawfilloval (x, 325, 25, 25, 76)
+	drawfilloval (x, 375, 25, 25, 76)
+	x := x + 1
+	exit when x = 800
+    end loop
+    colourback (76)
+    cls
+    %Start screen
+    %Project info
+    %Drawing flags
+    %belgium
+    drawfillbox (535 - 50, 340, 566 - 50, 400, 7)
+    drawfillbox (566 - 50, 340, 597 - 50, 400, 14)
+    drawfillbox (597 - 50, 340, 628 - 50, 400, 12)
+    %Spain
+    drawfillbox (335 - 50, 400, 430 - 50, 380, 12)
+    drawfillbox (335 - 50, 360, 430 - 50, 340, 12)
+    drawfillbox (335 - 50, 387, 430 - 50, 353, 14)
+    %germany
+    drawfillbox (135 - 50, 400, 230 - 50, 380, 14)
+    drawfillbox (135 - 50, 380, 230 - 50, 360, 12)
+    drawfillbox (135 - 50, 360, 230 - 50, 340, 7)
+    %Argintina
+    drawfillbox (135 - 50, 100, 230 - 50, 80, 9)
+    drawfillbox (135 - 50, 80, 230 - 50, 60, 0)
+    drawfillbox (135 - 50, 60, 230 - 50, 40, 9)
+    drawfilloval (183 - 50, 70, 6, 6, 14)
+    %Brazil
+    drawfillbox (335 - 50, 40, 430 - 50, 100, 10)
+    drawline (382 - 50, 90, 425 - 50, 70, 14)
+    drawline (382 - 50, 50, 425 - 50, 70, 14)
+    drawline (340 - 50, 70, 382 - 50, 50, 14)
+    drawline (340 - 50, 70, 382 - 50, 90, 14)
+    drawfilloval (382 - 50, 70, 15, 15, 9)
+    %portugul
+    drawfillbox (535 - 50, 40, 570 - 50, 100, 10)
+    drawfillbox (571 - 50, 40, 628 - 50, 100, 12)
+    drawoval (570 - 50, 67, 15, 15, 14)
+    drawoval (570 - 50, 67, 16, 16, 14)
+    drawoval (570 - 50, 67, 17, 17, 14)
+    drawoval (570 - 50, 67, 18, 18, 14)
+    drawfillbox (569 - 50, 53, 571 - 50, 84, 14)
+    drawfillbox (550 - 50, 67, 584 - 50, 68, 14)
+    drawfilloval (570 - 50, 67, 8, 8, 12)
+    drawfilloval (570 - 50, 67, 6, 6, 0)
+    loop
+	locate (8, 31)
+	put "Press any key to start"
+	if hasch then
+	    exit
+	end if
+    end loop
+    %User selects offender
+    colourback (41)
+    cls
+    var v : int
+    v := 10
+    colourback (3)
+    cls
+    %Drawing all the parts of the player models that can be repeated for all models in the selection
+    loop
+	%Right leg
+	drawline (84 + v, 100, 84 + v, 150, 7)
+	drawline (95 + v, 100, 95 + v, 150, 7)
+	%Left leg
+	drawline (44 + v, 100, 44 + v, 150, 7)
+	drawline (55 + v, 100, 55 + v, 150, 7)
+	%Left thigh
+	drawline (70 + v, 170, 55 + v, 150, 7)
+	drawline (70 + v, 170, 84 + v, 150, 7)
+	%Right Thigh
+	drawline (70 + v, 180, 95 + v, 150, 7)
+	drawline (70 + v, 180, 44 + v, 150, 7)
+	%Right arm
+	drawline (90 + v, 220, 113 + v, 197, 7)
+	drawline (90 + v, 210, 113 + v, 187, 7)
+	%Left arm
+	drawline (50 + v, 210, 20 + v, 180, 7)
+	drawline (50 + v, 220, 20 + v, 190, 7)
+	%pole
+	drawline (123 + v, 97, 123 + v, 300, 29)
+	drawline (113 + v, 97, 113 + v, 300, 29)
+	drawline (113 + v, 97, 123 + v, 300, 29)
+	drawline (123 + v, 97, 113 + v, 300, 29)
+	%Left Fist
+	drawline (5 + v, 157, 5 + v, 175, 91)
+	drawline (15 + v, 158, 12 + v, 158, 91)
+	drawline (15 + v, 163, 12 + v, 163, 91)
+	drawline (15 + v, 168, 12 + v, 168, 91)
+	drawline (15 + v, 173, 12 + v, 173, 91)
+	%Right Fist
+	drawline (125 + v, 157, 125 + v, 175, 91)
+	drawline (125 + v, 157, 125 + v, 175, 91)
+	drawline (120 + v, 158, 112 + v, 158, 91)
+	drawline (120 + v, 163, 112 + v, 163, 91)
+	drawline (120 + v, 168, 112 + v, 168, 91)
+	drawline (120 + v, 173, 112 + v, 173, 91)
+	v := v + 200
+	exit when v = 410
+	%Drawing all the parts of the player models that can't be repeated for all models in the selection
+    end loop
+    %Messi eyeline
+    drawoval (90, 275, 5, 4, 7)
+    drawoval (70, 275, 5, 4, 7)
+    %Neymar eyeline
+    drawoval (80 + 210, 275, 5, 4, 7)
+    drawoval (60 + 210, 275, 5, 4, 7)
+    %Messihead
+    drawfilloval (80, 264, 25, 30, 91)
+    %Neymarhead
+    drawfilloval (70 + 210, 269, 25, 30, 91)
+    %Messi eyeline
+    drawoval (90, 270, 5, 4, 7)
+    drawoval (70, 270, 5, 4, 7)
+    %Neymar eyeline
+    drawoval (80 + 210, 275, 5, 4, 7)
+    drawoval (60 + 210, 275, 5, 4, 7)
+    %Ronaldo Right leg
+    drawline (84 + v, 100, 84 + v, 150, 7)
+    drawline (95 + v, 100, 95 + v, 150, 7)
+    %Ronaldo Left leg
+    drawline (44 + v, 100, 44 + v, 150, 7)
+    drawline (55 + v, 100, 55 + v, 150, 7)
+    %Ronaldo Left thigh
+    drawline (70 + v, 170, 55 + v, 150, 7)
+    drawline (70 + v, 170, 84 + v, 150, 7)
+    %Ronaldo Right Thigh
+    drawline (70 + v, 180, 95 + v, 150, 7)
+    drawline (70 + v, 180, 44 + v, 150, 7)
+    %Ronaldo head
+    drawfilloval (70 + v, 274, 24, 31, 91)
+    %Ronaldo eyeline
+    drawoval (80 + v, 280, 5, 4, 7)
+    drawoval (60 + v, 280, 5, 4, 7)
+    %Ronaldo Right arm
+    drawline (90 + v, 220, 113 + v, 197, 7)
+    drawline (90 + v, 210, 113 + v, 187, 7)
+    %Ronaldo Left arm
+    drawline (50 + v, 210, 20 + v, 180, 7)
+    drawline (50 + v, 220, 20 + v, 190, 7)
+    %Ronaldo pole
+    drawline (123 + v, 97, 123 + v, 300, 29)
+    drawline (113 + v, 97, 113 + v, 300, 29)
+    drawline (113 + v, 97, 123 + v, 300, 29)
+    drawline (123 + v, 97, 113 + v, 300, 29)
+    %Ronaldo Left Fist
+    drawline (5 + v, 157, 5 + v, 175, 91)
+    drawline (15 + v, 158, 12 + v, 158, 91)
+    drawline (15 + v, 163, 12 + v, 163, 91)
+    drawline (15 + v, 168, 12 + v, 168, 91)
+    drawline (15 + v, 173, 12 + v, 173, 91)
+    %Ronaldo Right Fist
+    drawline (125 + v, 157, 125 + v, 175, 91)
+    drawline (125 + v, 157, 125 + v, 175, 91)
+    drawline (120 + v, 158, 112 + v, 158, 91)
+    drawline (120 + v, 163, 112 + v, 163, 91)
+    drawline (120 + v, 168, 112 + v, 168, 91)
+    drawline (120 + v, 173, 112 + v, 173, 91)
+    %Ronaldo pupil
+    drawfilloval (80 + v, 280, 3, 2, 136)
+    drawfilloval (60 + v, 280, 3, 2, 136)
+    %Ronaldo chest
+    drawline (75 + v, 177, 75 + v, 240, 14)
+    drawline (65 + v, 177, 65 + v, 240, 14)
+    drawline (65 + v, 177, 75 + v, 240, 14)
+    drawline (75 + v, 177, 65 + v, 240, 14)
+    %Neymar pupil
+    drawfilloval (290, 275, 3, 2, 136)
+    drawfilloval (270, 275, 3, 2, 136)
+    %Neymar chest
+    drawline (285, 177, 285, 237, 8)
+    drawline (275, 177, 275, 237, 8)
+    drawline (275, 177, 285, 237, 8)
+    drawline (285, 177, 275, 237, 8)
+    %Messi pupil
+    drawfilloval (90, 270, 3, 2, 136)
+    drawfilloval (70, 270, 3, 2, 136)
+    %Messi chest
+    drawline (85, 177, 85, 233, 9)
+    drawline (75, 177, 75, 233, 9)
+    drawline (75, 177, 85, 233, 9)
+    drawline (85, 177, 75, 233, 9)
+    %Neymar Flag
+    drawfillbox (335, 240, 430, 300, 10)
+    drawline (382, 290, 425, 270, 14)
+    drawline (382, 250, 425, 270, 14)
+    drawline (340, 270, 382, 250, 14)
+    drawline (340, 270, 382, 290, 14)
+    drawfilloval (382, 270, 15, 15, 9)
+    %Ronaldo flag
+    drawfillbox (535, 240, 570, 300, 10)
+    drawfillbox (571, 240, 628, 300, 12)
+    drawoval (570, 267, 15, 15, 14)
+    drawoval (570, 267, 16, 16, 14)
+    drawoval (570, 267, 17, 17, 14)
+    drawoval (570, 267, 18, 18, 14)
+    drawfillbox (569, 253, 571, 284, 14)
+    drawfillbox (550, 267, 584, 268, 14)
+    drawfilloval (570, 267, 8, 8, 12)
+    drawfilloval (570, 267, 6, 6, 0)
+    %Messi Flag
+    drawfillbox (135, 300, 230, 280, 9)
+    drawfillbox (135, 280, 230, 260, 0)
+    drawfillbox (135, 260, 230, 240, 9)
+    drawfilloval (183, 270, 6, 6, 14)
+    %Messi Right jawline
+    drawline (90, 253, 90, 257, 7)
+    drawline (90, 258, 95, 262, 7)
+    %Messi Leftj awline
+    drawline (70, 252, 70, 257, 7)
+    drawline (70, 258, 65, 262, 7)
+    %Ronaldo Right jawline
+    drawline (75 + v, 253, 75 + v, 257, 7)
+    drawline (75 + v, 258, 80 + v, 262, 7)
+    %Ronaldo Left jawline
+    drawline (65 + v, 252, 65 + v, 257, 7)
+    drawline (65 + v, 258, 60 + v, 262, 7)
+    %Neymar Right jawline
+    drawline (290, 253, 290, 257, 7)
+    drawline (290, 258, 295, 262, 7)
+    %Neymar Left jawline
+    drawline (270, 252, 270, 257, 7)
+    drawline (270, 258, 265, 262, 7)
+    locate (2, 22)
+    put "Please select your offender"
+    locate (3, 3)
+    put "1. Messi"
+    locate (4, 5)
+    put "Statistics"
+    locate (5, 5)
+    put "Intimidation: 99 "
+    locate (6, 5)
+    put "Shot accuracy: 92 "
+    locate (3, 33)
+    put "2. Neymar"
+    locate (4, 35)
+    put "Statistics"
+    locate (5, 35)
+    put "Intimidation: 90"
+    locate (6, 35)
+    put "Shot accuracy: 97"
+    locate (3, 57)
+    put "3. Ronaldo"
+    locate (4, 60)
+    put "Statistics"
+    locate (5, 60)
+    put "Intimidation: 95"
+    locate (6, 60)
+    put "Shot accuracy: 95"
+    locate (22, 7)
+    put " High intimidation: makes it harder for the goalkeeper to save shots"
+    locate (23, 7)
+    put " High Shot accuracy: Makes it easier for you to aim your shot"
+    locate (25, 1)
+    get P
+    %Setting the statistics for each player
+    if P = 1 then
+	shotdelay := 20
+	intimidation := 80
+    elsif P = 2 then
+	shotdelay := 30
+	intimidation := 90
+    elsif P = 3 then
+	shotdelay := 25
+	intimidation := 85
+    end if
+    %Selecting the computers goalkeeper
+    cls
+    %Setting the variable back to zero so that the goalkeeper models can be drawn
+    v := 10
+    colourback (3)
+    cls
+    %Drawing all the parts of the player models that can be repeated for all models in the selection
+    loop
+	%Right leg
+	drawline (84 + v, 100, 84 + v, 150, 7)
+	drawline (95 + v, 100, 95 + v, 150, 7)
+	%Left leg
+	drawline (44 + v, 100, 44 + v, 150, 7)
+	drawline (55 + v, 100, 55 + v, 150, 7)
+	%Left thigh
+	drawline (70 + v, 170, 55 + v, 150, 7)
+	drawline (70 + v, 170, 84 + v, 150, 7)
+	%Right Thigh
+	drawline (70 + v, 180, 95 + v, 150, 7)
+	drawline (70 + v, 180, 44 + v, 150, 7)
+	%head
+	drawfilloval (70 + v, 269, 25, 30, 91)
+	%eyeline
+	drawoval (80 + v, 275, 5, 4, 7)
+	drawoval (60 + v, 275, 5, 4, 7)
+	%Right arm
+	drawline (90 + v, 220, 113 + v, 197, 7)
+	drawline (90 + v, 210, 113 + v, 187, 7)
+	%Left arm
+	drawline (50 + v, 210, 20 + v, 180, 7)
+	drawline (50 + v, 220, 20 + v, 190, 7)
+	%pole
+	drawline (123 + v, 97, 123 + v, 300, 29)
+	drawline (113 + v, 97, 113 + v, 300, 29)
+	drawline (113 + v, 97, 123 + v, 300, 29)
+	drawline (123 + v, 97, 113 + v, 300, 29)
+	%Left Fist
+	drawline (5 + v, 157, 5 + v, 175, 91)
+	drawline (15 + v, 158, 12 + v, 158, 91)
+	drawline (15 + v, 163, 12 + v, 163, 91)
+	drawline (15 + v, 168, 12 + v, 168, 91)
+	drawline (15 + v, 173, 12 + v, 173, 91)
+	%Right Fist
+	drawline (125 + v, 157, 125 + v, 175, 91)
+	drawline (125 + v, 157, 125 + v, 175, 91)
+	drawline (120 + v, 158, 112 + v, 158, 91)
+	drawline (120 + v, 163, 112 + v, 163, 91)
+	drawline (120 + v, 168, 112 + v, 168, 91)
+	drawline (120 + v, 173, 112 + v, 173, 91)
+	v := v + 200
+	exit when v = 410
+    end loop
+    %Drawing all the parts of the player models that can't be repeated for all models in the selection
+    %courtois Right leg
+    drawline (84 + v, 100, 84 + v, 150, 7)
+    drawline (95 + v, 100, 95 + v, 150, 7)
+    %courtois Left leg
+    drawline (44 + v, 100, 44 + v, 150, 7)
+    drawline (55 + v, 100, 55 + v, 150, 7)
+    %courtois Left thigh
+    drawline (70 + v, 170, 55 + v, 150, 7)
+    drawline (70 + v, 170, 84 + v, 150, 7)
+    %courtois Right thigh
+    drawline (70 + v, 180, 95 + v, 150, 7)
+    drawline (70 + v, 180, 44 + v, 150, 7)
+    %courtois head
+    drawfilloval (70 + v, 274, 24, 31, 91)
+    %courtois eyeline
+    drawoval (80 + v, 280, 5, 4, 7)
+    drawoval (60 + v, 280, 5, 4, 7)
+    %courtois Right arm
+    drawline (90 + v, 220, 113 + v, 197, 7)
+    drawline (90 + v, 210, 113 + v, 187, 7)
+    %courtois Left arm
+    drawline (50 + v, 210, 20 + v, 180, 7)
+    drawline (50 + v, 220, 20 + v, 190, 7)
+    %courtois pole
+    drawline (123 + v, 97, 123 + v, 300, 29)
+    drawline (113 + v, 97, 113 + v, 300, 29)
+    drawline (113 + v, 97, 123 + v, 300, 29)
+    drawline (123 + v, 97, 113 + v, 300, 29)
+    %courtois Left Fist
+    drawline (5 + v, 157, 5 + v, 175, 91)
+    drawline (15 + v, 158, 12 + v, 158, 91)
+    drawline (15 + v, 163, 12 + v, 163, 91)
+    drawline (15 + v, 168, 12 + v, 168, 91)
+    drawline (15 + v, 173, 12 + v, 173, 91)
+    %courtois Right Fist
+    drawline (125 + v, 157, 125 + v, 175, 91)
+    drawline (125 + v, 157, 125 + v, 175, 91)
+    drawline (120 + v, 158, 112 + v, 158, 91)
+    drawline (120 + v, 163, 112 + v, 163, 91)
+    drawline (120 + v, 168, 112 + v, 168, 91)
+    drawline (120 + v, 173, 112 + v, 173, 91)
+    %courtois pupils
+    drawfilloval (80 + v, 280, 3, 2, 136)
+    drawfilloval (60 + v, 280, 3, 2, 136)
+    %courtois chest
+    drawline (75 + v, 177, 75 + v, 240, 9)
+    drawline (65 + v, 177, 65 + v, 240, 9)
+    drawline (65 + v, 177, 75 + v, 240, 9)
+    drawline (75 + v, 177, 65 + v, 240, 9)
+    %De gea pupils
+    drawfilloval (290, 275, 3, 2, 9)
+    drawfilloval (270, 275, 3, 2, 9)
+    %De gea chest
+    drawline (285, 177, 285, 237, 14)
+    drawline (275, 177, 275, 237, 14)
+    drawline (275, 177, 285, 237, 14)
+    drawline (285, 177, 275, 237, 14)
+    %Neuer pupils
+    drawfilloval (90, 275, 3, 2, 9)
+    drawfilloval (70, 275, 3, 2, 9)
+    %Neuer chest
+    drawline (85, 177, 85, 237, 10)
+    drawline (75, 177, 75, 237, 10)
+    drawline (75, 177, 85, 237, 10)
+    drawline (85, 177, 75, 237, 10)
+    %De gea Flag
+    drawfillbox (335, 300, 430, 280, 12)
+    drawfillbox (335, 260, 430, 240, 12)
+    drawfillbox (335, 287, 430, 253, 14)
+    %courtoisflag
+    drawfillbox (535, 240, 566, 300, 7)
+    drawfillbox (566, 240, 597, 300, 14)
+    drawfillbox (597, 240, 628, 300, 12)
+    %Neuer Flag
+    drawfillbox (135, 300, 230, 280, 14)
+    drawfillbox (135, 280, 230, 260, 12)
+    drawfillbox (135, 260, 230, 240, 7)
+    %Neuer Right jawline
+    drawline (90, 253, 90, 257, 7)
+    drawline (90, 258, 95, 262, 7)
+    %Neuer Left jawline
+    drawline (70, 252, 70, 257, 7)
+    drawline (70, 258, 65, 262, 7)
+    %courtois Right jawline
+    drawline (75 + v, 253, 75 + v, 257, 7)
+    drawline (75 + v, 258, 80 + v, 262, 7)
+    %courtois Left jawline
+    drawline (65 + v, 252, 65 + v, 257, 7)
+    drawline (65 + v, 258, 60 + v, 262, 7)
+    %De gea Right jawline
+    drawline (290, 253, 290, 257, 7)
+    drawline (290, 258, 295, 262, 7)
+    %De gea Left jawline
+    drawline (270, 252, 270, 257, 7)
+    drawline (270, 258, 265, 262, 7)
+    locate (1, 22)
+    put "Please select the computers goalkeeper"
+    locate (2, 3)
+    put "1. Neuer"
+    locate (3, 5)
+    put "Statistics"
+    locate (4, 5)
+    put "Height: 6 ft 4 in"
+    locate (2, 33)
+    put "2. De Gea"
+    locate (3, 35)
+    put "Statistics"
+    locate (4, 35)
+    put "Height: 6 ft 4 in"
+    locate (2, 57)
+    put "3. Courtois"
+    locate (3, 60)
+    put "Statistics"
+    locate (4, 60)
+    put "Height: 6 ft 6 in"
+    locate (22, 16)
+    put " High Height: increases the reach of the goalkeeper"
+    locate (25, 1)
+    get CPUP
+    colourback (6)
+    cls
+    %Coin toss
+    loop
+	put "Coin Toss"
+	var coin : int
+	randint (coin, 1, 2)
+	po := 0
+	oi := 0
+	loop
+	    %Animating the coin flipping
+	    loop
+		oi := oi + 1
+		delay (40)
+		po := po + 10
+		drawfilloval (500, 300, 50, po, 8)
+		exit when po = 50
+	    end loop
+	    po := 60
+	    loop
+		po := po - 10
+		exit when po = 0
+	    end loop
+	    cls
+	    exit when oi = 50
+	end loop
+	%Drawing either heads or tails, depending on the outcome
+	if coin = 1 then
+	    drawfilloval (500, 300, 50, 50, 8)
+	    drawfilloval (500, 300, 30, 30, 14)
+	    drawfilloval (500, 300, 25, 25, 7)
+	    drawfilloval (500, 310, 25, 25, 14)
+	    drawfilloval (490, 310, 5, 5, 7)
+	    drawfilloval (510, 310, 5, 5, 7)
+	    locate (11, 62)
+	    put "heads"
+	elsif coin = 2 then
+	    drawfilloval (500, 300, 50, 50, 8)
+	    drawfilloval (500, 300, 30, 30, 7)
+	    locate (11, 62)
+	    put "Tails"
+	end if
+	locate (3, 1)
+	put "you go first"
+	locate (16, 1)
+	put "Input any key to continue"
+	get continue6
+	exit
+    end loop
+    %Starting the core gameplay
+    colourback (118)
+    cls
+    locate (14, 1)
+    put "Input any character to start"
+    get continue4
+    loop
+	cls
+	%Code that re-draws the red or green dots on the scoreboard
+	%This has to be done because the screen needs to be cleared for every shot, thus clearing the scoreboard
+	if o = 1 or o = 3 then
+	    drawfilloval (463, 300, 5, 5, 12)
+	elsif o = 2 then
+	    drawfilloval (463, 300, 5, 5, 10)
+	end if
+	if a = 1 or a = 3 then
+	    drawfilloval (476, 300, 5, 5, 12)
+	elsif a = 2 then
+	    drawfilloval (476, 300, 5, 5, 10)
+	end if
+	if u = 1 or u = 3 then
+	    drawfilloval (489, 300, 5, 5, 12)
+	elsif u = 2 then
+	    drawfilloval (489, 300, 5, 5, 10)
+	end if
+	if b = 1 or b = 3 then
+	    drawfilloval (502, 300, 5, 5, 12)
+	elsif b = 2 then
+	    drawfilloval (502, 300, 5, 5, 10)
+	end if
+	if m = 1 or m = 3 then
+	    drawfilloval (515, 300, 5, 5, 12)
+	elsif m = 2 then
+	    drawfilloval (515, 300, 5, 5, 10)
+	end if
+	if co = 2 then
+	    drawfilloval (463, 250, 5, 5, 10)
+	elsif co = 3 then
+	    drawfilloval (463, 250, 5, 5, 12)
+	end if
+	if ca = 2 then
+	    drawfilloval (476, 250, 5, 5, 10)
+	elsif ca = 3 then
+	    drawfilloval (476, 250, 5, 5, 12)
+	end if
+	if cu = 2 then
+	    drawfilloval (489, 250, 5, 5, 10)
+	elsif cu = 3 then
+	    drawfilloval (489, 250, 5, 5, 12)
+	end if
+	if cb = 2 then
+	    drawfilloval (502, 250, 5, 5, 10)
+	elsif cb = 3 then
+	    drawfilloval (502, 250, 5, 5, 12)
+	end if
+	if cm = 2 then
+	    drawfilloval (515, 250, 5, 5, 10)
+	elsif cm = 3 then
+	    drawfilloval (515, 250, 5, 5, 12)
+	end if
+	exit when savecount + goalcount = 965
+	%Creating the score board
+	locate (5, 57)
+	put "Your score"
+	locate (8, 57)
+	put "CPU score"
+	n := n + 1
+	s := 45
+	d := 54
+	drawoval (463, 300, 5, 5, 12)
+	drawoval (476, 300, 5, 5, 12)
+	drawoval (489, 300, 5, 5, 12)
+	drawoval (502, 300, 5, 5, 12)
+	drawoval (515, 300, 5, 5, 12)
+	drawoval (463, 250, 5, 5, 12)
+	drawoval (476, 250, 5, 5, 12)
+	drawoval (489, 250, 5, 5, 12)
+	drawoval (502, 250, 5, 5, 12)
+	drawoval (515, 250, 5, 5, 12)
+	%creating the net
+	drawbox (50, 200, 250, 100, 7)
+	drawbox (60, 190, 240, 100, 7)
+	%Creating the boxes that hold the aiming cursers
+	drawbox (25, 35, 290, 15, 11)
+	drawbox (1, 310, 20, 29, 11)
+	%Verical aiming for the users shot
+	locate (1, 1)
+	put "Input any key to aim horizontaly"
+	get continue1
+	loop
+	    %In order for the aiming to be key sensitive I found that I could not use a counted loop to animate the aiming cursers if I wanted the aiming to be key sensitive, and I did
+	    %When the user hits a key (exit when hasch), the s value is recorded, this gives the program the horizontal cordinate of the shot
+	    %the Shotdelay makes the speed of aiming faster for players with lower accuracy
+	    locate (3, 1)
+	    put "Press any key to shoot"
+	    delay (shotdelay - 10)
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 1
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 6
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 11
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 16
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 21
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 26
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 31
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 36
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 41
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s + 46
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 1
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 6
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 11
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (20)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 16
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 21
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 26
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 31
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 36
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 41
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	    delay (shotdelay)
+	    drawfilloval (s, 25, 5, 5, 118)
+	    s := s - 46
+	    drawfilloval (s, 25, 5, 5, 12)
+	    exit when hasch
+	end loop
+	%Draw the red line that shows the user their horizontal cordinate for their shot
+	drawbox (s, 246, s, 54, 12)
+	locate (1, 1)
+	colourback (118)
+	put ""
+	put ""
+	put ""
+	locate (1, 1)
+	put "Input any key to aim vertically"
+	get continue
+	loop
+	    %When the user hits a key (exit when hasch), the d value is recorded, this gives the program the vertical cordinate of the shot
+	    locate (3, 1)
+	    put "Press any key to shoot"
+	    loop
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 1
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 6
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 11
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 16
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 21
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 26
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 31
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 36
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 41
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d + 46
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 1
+		drawfilloval (8, d, 5, 5, 12)
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 6
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 11
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 16
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 21
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 26
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 31
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 36
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 41
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+		delay (shotdelay)
+		drawfilloval (8, d, 5, 5, 118)
+		d := d - 46
+		drawfilloval (8, d, 5, 5, 12)
+		exit when hasch
+	    end loop
+	    exit when hasch
+	end loop
+	%Draw the red line that shows the user their verticle cordinate for their shot
+	drawbox (63, d, 235, d, 12)
+	%Animates the black ball that shows the coordinates of the users shot
+	for count : 1 .. 5
+	    delay (50)
+	    drawfilloval (s, d, count, count, 118)
+	    drawfilloval (s, d, count, count, 7)
+	end for
+	%Setting the goalkeepers statistics
+	if CPUP = 1 or CPUP = 3 then
+	    height1 := 160
+	    height2 := 120
+	elsif CPUP = 2 then
+	    height1 := 150
+	    height2 := 120
+	end if
+	%Showing the user the computers shot
+	r := r + 13
+	%the dive of the goalkeeper is randomly generated
+	randint (dive, 60, 240)
+	%the chance of the user scoring is calculated in the variable "goal"
+	%This takes into account all the statistics of the players
+	%This includes the offenders shot accuracy, intimidation, and the goakeepers height
+	goal := (height1 + height2) / 2 + (s + d) / 2
+	%If the users shot is outside the net, then it counts as a miss/not a goal
+	if s > 240 or d > 190 or s < 54 or d < 80 then
+	    locate (4, 45)
+	    put "Miss"
+	    %Draws a red dot in the score board to signify the users miss
+	    drawfilloval (r, 300, 5, 5, 12)
+	    locate (1, 1)
+	    put ""
+	    put ""
+	    put "Input any key to see CPU's shot"
+	    get continue3
+	    savecount := savecount + 13
+	    %code that lets the program determine what scores to re-draw on the scoreboard when the program loops
+	    if n = 1 then
+		o := 1
+	    elsif n = 2 then
+		a := 1
+	    elsif n = 3 then
+		u := 1
+	    elsif n = 4 then
+		b := 1
+	    elsif n = 5 then
+		m := 1
+	    end if
+	    %Code that is executed when the user scores
+	    %The intimidation determines the odds of the goalkeeper saving the ball when the user is shooting
+	    %intimidation is a range depending on the value on the player the user chooses
+	elsif dive > goal + intimidation or dive < goal - intimidation then
+	    %Drawing the goalkeeper diving
+	    %Left thigh
+	    drawline (dive, 120, dive - 4, 110, 7)
+	    %Right thigh
+	    drawline (dive, 120, dive + 6, 110, 7)
+	    %head
+	    drawfilloval (dive, 145, 5, 5, 91)
+	    %Right arm
+	    drawline (dive, 130, dive - 30, 140, 7)
+	    %Left arm
+	    drawline (dive, 130, dive + 20, 140, 7)
+	    %Depending on the goalkeeper choice at the beginning of the program, the same colour shirt is reflected
+	    if CPUP = 1 then
+		chest := 10
+	    elsif CPUP = 2 then
+		chest := 14
+	    elsif CPUP = 3 then
+		chest := 9
+	    end if
+	    %chest
+	    drawline (dive + 5, 125, dive + 5, 140, chest)
+	    drawline (dive - 5, 125, dive - 5, 140, chest)
+	    drawline (dive - 5, 125, dive + 5, 140, chest)
+	    drawline (dive + 5, 125, dive - 5, 140, chest)
+	    locate (4, 45)
+	    put "Goal"
+	    %Draws a green dot in the score board to signify the users goal
+	    drawfilloval (r, 300, 5, 5, 10)
+	    locate (1, 1)
+	    put ""
+	    put ""
+	    put "Input any key to see CPU's shot"
+	    get continue3
+	    %The users goalcounter is increased, witch at the end will determine if the user wins or looses
+	    goalcount := goalcount + 13
+	    %code that lets the program determine what scores to re-draw on the scoreboard when the program loops
+	    if n = 1 then
+		o := 2
+	    elsif n = 2 then
+		a := 2
+	    elsif n = 3 then
+		u := 2
+	    elsif n = 4 then
+		b := 2
+	    elsif n = 5 then
+		m := 2
+	    end if
+	    %Code that is executed if the computer goalkeeper saves the users shot
+	elsif dive < goal + intimidation and dive > goal - intimidation then
+	    %Right leg
+	    drawline (s, 100, s, 110, 7)
+	    %Left leg
+	    drawline (s, 100, s, 110, 7)
+	    %Left tvigv
+	    drawline (s, 120, s - 4, 110, 7)
+	    %Right Tvigv
+	    drawline (s, 120, s + 6, 110, 7)
+	    %head
+	    drawfilloval (s, 145, 5, 5, 91)
+	    %Right arm
+	    drawline (s, 130, s - 30, 140, 7)
+	    %Left arm
+	    drawline (s, 130, s + 20, 140, 7)
+	    %Depending on the goalkeeper choice at the beginning of the program, the same colour shirt is reflected
+	    if CPUP = 1 then
+		chest := 10
+	    elsif CPUP = 2 then
+		chest := 14
+	    elsif CPUP = 3 then
+		chest := 9
+	    end if
+	    %chest
+	    drawline (s + 5, 125, s + 5, 140, chest)
+	    drawline (s - 5, 125, s - 5, 140, chest)
+	    drawline (s - 5, 125, s + 5, 140, chest)
+	    drawline (s + 5, 125, s - 5, 140, chest)
+	    locate (4, 45)
+	    put "Save"
+	    %Draws a red dot in the score board to signify the ball getting saved by the computer
+	    drawfilloval (r, 300, 5, 5, 12)
+	    locate (1, 1)
+	    put ""
+	    put ""
+	    put "Input any key to see CPU's shot"
+	    get continue3
+	    savecount := savecount + 13
+	    %code that lets the program determine what scores to re-draw on the scoreboard when the program loops
+	    if n = 1 then
+		o := 3
+	    elsif n = 2 then
+		a := 3
+	    elsif n = 3 then
+		u := 3
+	    elsif n = 4 then
+		b := 3
+	    elsif n = 5 then
+		m := 3
+	    end if
+	end if
+	%Code that shows the computers shot after the users shot
+	cls
+	locate (10, 10)
+	put "CPU's shot"
+	%Re-draws the net because of the needed clering of the screen
+	drawbox (50, 200, 250, 100, 7)
+	drawbox (60, 190, 240, 100, 7)
+	drawbox (25, 35, 290, 15, 11)
+	drawbox (1, 310, 20, 29, 11)
+	%random integers are generated that represents the horizantal, and vertical cordinates of the computers shot
+	randint (ab, 60, 240)
+	randint (bc, 100, 185)
+	%A black dot is animated to show the user the coordinates of the computers shot
+	for count : 1 .. 5
+	    delay (500)
+	    drawfilloval (ab, bc, count, count, 0)
+	    drawfilloval (ab, bc, count, count, 7)
+	end for
+	%A random integer is generated to signify the users goalkeepers dive
+	randint (dive2, 60, 240)
+	%A random integer either 1 or 2 is generated to tell if the computers shot was a miss or a goal
+	randint (p, 1, 2)
+	%Code that is exicuted if the users goalkeeper did not save the computers shot
+	if p = 1 then
+	    locate (4, 45)
+	    put "Goal"
+	    %Drawing the goalkeepers dive
+	    %Left thigh
+	    drawline (dive2, 120, dive2 - 4, 110, 7)
+	    %Right thigh
+	    drawline (dive2, 120, dive2 + 6, 110, 7)
+	    %vead
+	    drawfilloval (dive2, 145, 5, 5, 91)
+	    %Right arm
+	    drawline (dive2, 130, dive2 - 30, 140, 7)
+	    %Left arm
+	    drawline (dive2, 130, dive2 + 20, 140, 7)
+	    %chest
+	    drawline (dive2 + 5, 125, dive2 + 5, 140, 7)
+	    drawline (dive2 - 5, 125, dive2 - 5, 140, 7)
+	    drawline (dive2 - 5, 125, dive2 + 5, 140, 7)
+	    drawline (dive2 + 5, 125, dive2 - 5, 140, 7)
+	    locate (4, 45)
+	    %code that lets the program determine what scores to re-draw on the scoreboard when the program loops
+	    if n = 1 then
+		co := 2
+	    elsif n = 2 then
+		ca := 2
+	    elsif n = 3 then
+		cu := 2
+	    elsif n = 4 then
+		cb := 2
+	    elsif n = 5 then
+		cm := 2
+	    end if
+	    %The computers goalcounter is increased, witch at the end will determine if the user wins or looses
+	    CPUgoalcount := CPUgoalcount + 13
+	    %Code that is exicuted if the users goalkeeper saved the computers shot
+	elsif p = 2 then
+	    locate (4, 45)
+	    put "Save"
+	    %Left thigh
+	    drawline (ab, 120, ab - 4, 110, 7)
+	    %Right thigh
+	    drawline (ab, 120, ab + 6, 110, 7)
+	    %head
+	    drawfilloval (ab, 145, 5, 5, 91)
+	    %Right arm
+	    drawline (ab, 130, ab - 30, 140, 7)
+	    %Left arm
+	    drawline (ab, 130, ab + 20, 140, 7)
+	    %chest
+	    drawline (ab + 5, 125, ab + 5, 140, 7)
+	    drawline (ab - 5, 125, ab - 5, 140, 7)
+	    drawline (ab - 5, 125, ab + 5, 140, 7)
+	    drawline (ab + 5, 125, ab - 5, 140, 7)
+	    %code that lets the program determine what scores to re-draw on the scoreboard when the program loops
+	    if n = 1 then
+		co := 3
+	    elsif n = 2 then
+		ca := 3
+	    elsif n = 3 then
+		cu := 3
+	    elsif n = 4 then
+		cb := 3
+	    elsif n = 5 then
+		cm := 3
+	    end if
+	end if
+	%Code that tells the user to take the next shot but only if it is not the users last turn
+	if n = 1 or n = 2 or n = 3 or n = 4 then
+	    locate (3, 1)
+	    put "Input any key to take your next shot"
+	    get continue5
+	end if
+    end loop
+    %Re-draws the cleared scoreboard
+    cls
+    locate (5, 57)
+    put "Your score"
+    locate (8, 57)
+    put "CPU score"
+    drawoval (463, 300, 5, 5, 12)
+    drawoval (476, 300, 5, 5, 12)
+    drawoval (489, 300, 5, 5, 12)
+    drawoval (502, 300, 5, 5, 12)
+    drawoval (515, 300, 5, 5, 12)
+    drawoval (463, 250, 5, 5, 12)
+    drawoval (476, 250, 5, 5, 12)
+    drawoval (489, 250, 5, 5, 12)
+    drawoval (502, 250, 5, 5, 12)
+    drawoval (515, 250, 5, 5, 12)
+    %The users score is animated on screen
+    if o = 1 or o = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (463, 300, count1, count1, 12)
+	end for
+    elsif o = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (463, 300, count1, count1, 10)
+	end for
+    end if
+    if a = 1 or a = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (476, 300, count1, count1, 12)
+	end for
+    elsif a = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (476, 300, count1, count1, 10)
+	end for
+    end if
+    if u = 1 or u = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (489, 300, count1, count1, 12)
+	end for
+    elsif u = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (489, 300, count1, count1, 10)
+	end for
+    end if
+    if b = 1 or b = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (502, 300, count1, count1, 12)
+	end for
+    elsif b = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (502, 300, count1, count1, 10)
+	end for
+    end if
+    if m = 1 or m = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (515, 300, count1, count1, 12)
+	end for
+    elsif m = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (515, 300, count1, count1, 10)
+	end for
+    end if
+    %The computers score is animated on screen
+    if co = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (463, 250, count1, count1, 12)
+	end for
+    elsif co = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (463, 250, count1, count1, 10)
+	end for
+    end if
+    if ca = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (476, 250, count1, count1, 12)
+	end for
+    elsif ca = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (476, 250, count1, count1, 10)
+	end for
+    end if
+    if cu = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (489, 250, count1, count1, 12)
+	end for
+    elsif cu = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (489, 250, count1, count1, 10)
+	end for
+    end if
+    if cb = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (502, 250, count1, count1, 12)
+	end for
+    elsif cb = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (502, 250, count1, count1, 10)
+	end for
+    end if
+    if cm = 3 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (515, 250, count1, count1, 12)
+	end for
+    elsif cm = 2 then
+	for count1 : 1 .. 5
+	    delay (count1 * 50)
+	    drawfilloval (515, 250, count1, count1, 10)
+	end for
+    end if
+    %The users score is showcased
+    drawoval (463, 300, 5, 5, 12)
+    drawoval (476, 300, 5, 5, 12)
+    drawoval (489, 300, 5, 5, 12)
+    drawoval (502, 300, 5, 5, 12)
+    drawoval (515, 300, 5, 5, 12)
+    %This code determines if the user lost based on the users goalcount compared to the computers goalcount
+    %This code also asks the user if they would want to play the game again, if they do then the game loops back to the start screen
+    if CPUgoalcount > goalcount then
+	locate (1, 1)
+	put "You Loose"
+	locate (10, 1)
+	put "Play again? (Y/N)"
+	get answer
+	if answer = "n" or answer = "N" then
+	    exit
+	end if
+    elsif CPUgoalcount < goalcount then
+	locate (1, 1)
+	put "You Win"
+	locate (10, 1)
+	put "Play again? (Y/N)"
+	get answer
+	if answer = "n" or answer = "N" then
+	    exit
+	end if
+    else
+	locate (1, 1)
+	put "Tie"
+	locate (10, 1)
+	put "Play again? (Y/N)"
+	get answer
+	if answer = "n" or answer = "N" then
+	    exit
+	end if
+    end if
+end loop
+%Farwell screen if the user decides not to play agian
+colourback (76)
+cls
+%Drawing flags
+%belgium
+drawfillbox (535 - 50, 340, 566 - 50, 400, 7)
+drawfillbox (566 - 50, 340, 597 - 50, 400, 14)
+drawfillbox (597 - 50, 340, 628 - 50, 400, 12)
+%Spain
+drawfillbox (335 - 50, 400, 430 - 50, 380, 12)
+drawfillbox (335 - 50, 360, 430 - 50, 340, 12)
+drawfillbox (335 - 50, 387, 430 - 50, 353, 14)
+%germany
+drawfillbox (135 - 50, 400, 230 - 50, 380, 14)
+drawfillbox (135 - 50, 380, 230 - 50, 360, 12)
+drawfillbox (135 - 50, 360, 230 - 50, 340, 7)
+%Argintina
+drawfillbox (135 - 50, 100, 230 - 50, 80, 9)
+drawfillbox (135 - 50, 80, 230 - 50, 60, 0)
+drawfillbox (135 - 50, 60, 230 - 50, 40, 9)
+drawfilloval (183 - 50, 70, 6, 6, 14)
+%Brazil
+drawfillbox (335 - 50, 40, 430 - 50, 100, 10)
+drawline (382 - 50, 90, 425 - 50, 70, 14)
+drawline (382 - 50, 50, 425 - 50, 70, 14)
+drawline (340 - 50, 70, 382 - 50, 50, 14)
+drawline (340 - 50, 70, 382 - 50, 90, 14)
+drawfilloval (382 - 50, 70, 15, 15, 9)
+%portugal
+drawfillbox (535 - 50, 40, 570 - 50, 100, 10)
+drawfillbox (571 - 50, 40, 628 - 50, 100, 12)
+drawoval (570 - 50, 67, 15, 15, 14)
+drawoval (570 - 50, 67, 16, 16, 14)
+drawoval (570 - 50, 67, 17, 17, 14)
+drawoval (570 - 50, 67, 18, 18, 14)
+drawfillbox (569 - 50, 53, 571 - 50, 84, 14)
+drawfillbox (550 - 50, 67, 584 - 50, 68, 14)
+drawfilloval (570 - 50, 67, 8, 8, 12)
+drawfilloval (570 - 50, 67, 6, 6, 0)
+locate (12, 31)
+put "Thank you for Playing"
